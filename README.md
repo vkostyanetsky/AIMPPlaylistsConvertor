@@ -13,7 +13,7 @@
 Пример:
 
 ```
-python --input C:\Users\Username\AppData\Roaming\AIMP\PLS --output D:\Music
+python convert.py --input C:\Users\Username\AppData\Roaming\AIMP\PLS --output D:\Music
 ```
 
 Обратите внимание, что:
