@@ -6,22 +6,29 @@ def get_args():
     args_parser = argparse.ArgumentParser()
 
     args_parser.add_argument(
-        '--input',
+        '--directory',
         type = str,
         help = 'input directory with source data',
-        required = True
+        required = False
     )
 
     args_parser.add_argument(
-        '--output',
+        '--file',
         type = str,
+        help = 'input file with source data',
+        required = False
+    )    
+
+    args_parser.add_argument(
+        '--output',
+        type = str,        
         help = 'output directory with result data',
         required = True
     )
-
+    
     return args_parser.parse_args()
     
-def convert_playlist(aimp_playlist_filename):
+def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
 
     def get_m3u8_playlist_lines():
 
@@ -78,7 +85,7 @@ def convert_playlist(aimp_playlist_filename):
         with open(playlist_path, "w", encoding = 'utf-8-sig') as m3u8file:
             m3u8file.write(playlist_data)
 
-    file_path = os.path.join(args.input, aimp_playlist_filename)
+    file_path = os.path.join(aimp_playlist_directory, aimp_playlist_filename)
             
     with open(file_path, encoding = 'utf_16_le') as handle:
 
@@ -89,13 +96,22 @@ def convert_playlist(aimp_playlist_filename):
 
 args = get_args()
 
-files = os.walk(args.input)
-
-for root, dirs, filenames in files:
+if args.file != None:
+        
+    dirname     = os.path.dirname(args.file)
+    basename    = os.path.basename(args.file)
     
-    for filename in filenames:        
+    convert_playlist(dirname, basename)
+    
+elif args.directory != None:
 
-        filename_extension = os.path.splitext(filename)[1]
+    files = os.walk(args.directory)
 
-        if filename_extension == '.aimppl4':
-            convert_playlist(filename)
+    for root, dirs, filenames in files:
+        
+        for filename in filenames:        
+
+            filename_extension = os.path.splitext(filename)[1]
+
+            if filename_extension == '.aimppl4':
+                convert_playlist(args.directory, filename)
