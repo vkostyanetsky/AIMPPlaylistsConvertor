@@ -6,21 +6,21 @@ def get_args():
     args_parser = argparse.ArgumentParser()
 
     args_parser.add_argument(
-        '--directory',
+        '--input-dir',
         type = str,
         help = 'input directory with source data',
         required = False
     )
 
     args_parser.add_argument(
-        '--file',
+        '--input-file',
         type = str,
         help = 'input file with source data',
         required = False
     )    
 
     args_parser.add_argument(
-        '--output',
+        '--output-dir',
         type = str,        
         help = 'output directory with result data',
         required = True
@@ -34,7 +34,7 @@ def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
 
         def get_relative_audiofile_path(audiofile_path):
             
-            paths = {audiofile_path, args.output}
+            paths = {audiofile_path, args.output_dir}
             common_path = os.path.commonpath(paths)
 
             if common_path != '':
@@ -58,6 +58,10 @@ def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
             if not is_content:
                 continue
 
+            if line.startswith('#-----'):
+                is_content = False
+                continue
+
             if line.startswith('-'):
                 continue
 
@@ -77,7 +81,7 @@ def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
             aimp_playlist_filename_without_extension    = os.path.splitext(aimp_playlist_filename)[0]
             m3u8_playlist_filename                      = '{}.m3u8'.format(aimp_playlist_filename_without_extension)
 
-            return os.path.join(args.output, m3u8_playlist_filename)
+            return os.path.join(args.output_dir, m3u8_playlist_filename)
 
         playlist_path = get_m3u8_playlist_path()
         playlist_data = '\n'.join(m3u8_playlist_lines)
@@ -96,16 +100,16 @@ def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
 
 args = get_args()
 
-if args.file != None:
+if args.input_file != None:
         
-    dirname     = os.path.dirname(args.file)
-    basename    = os.path.basename(args.file)
+    dirname     = os.path.dirname(args.input_file)
+    basename    = os.path.basename(args.input_file)
     
     convert_playlist(dirname, basename)
     
-elif args.directory != None:
+elif args.input_dir != None:
 
-    files = os.walk(args.directory)
+    files = os.walk(args.input_dir)
 
     for root, dirs, filenames in files:
         
@@ -114,4 +118,4 @@ elif args.directory != None:
             filename_extension = os.path.splitext(filename)[1]
 
             if filename_extension == '.aimppl4':
-                convert_playlist(args.directory, filename)
+                convert_playlist(args.input_dir, filename)
