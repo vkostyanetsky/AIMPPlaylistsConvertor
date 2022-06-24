@@ -1,51 +1,50 @@
 import os
 import argparse
 
-def get_args():
 
+def get_args():
     args_parser = argparse.ArgumentParser()
 
     args_parser.add_argument(
         '--input-dir',
-        type = str,
-        help = 'input directory with source data',
-        required = False
+        type=str,
+        help='input directory with source data',
+        required=False
     )
 
     args_parser.add_argument(
         '--input-file',
-        type = str,
-        help = 'input file with source data',
-        required = False
-    )    
+        type=str,
+        help='input file with source data',
+        required=False
+    )
 
     args_parser.add_argument(
         '--output-dir',
-        type = str,        
-        help = 'output directory with result data',
-        required = True
+        type=str,
+        help='output directory with result data',
+        required=True
     )
-    
-    return args_parser.parse_args()
-    
-def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
 
+    return args_parser.parse_args()
+
+
+def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
     def get_m3u8_playlist_lines():
 
         def get_relative_audiofile_path(audiofile_path):
-            
-            paths = {audiofile_path, args.output_dir}
+
+            paths = [audiofile_path, args.output_dir]
             common_path = os.path.commonpath(paths)
 
             if common_path != '':
-                result = os.path.relpath(audiofile_path, start = common_path)
+                result = os.path.relpath(audiofile_path, start=common_path)
             else:
                 result = audiofile_path
 
             return result
 
-        result = []
-        result.append('#EXTM3U')
+        result = ['#EXTM3U']
 
         is_content = False
 
@@ -77,43 +76,43 @@ def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
     def write_m3u8_playlist():
 
         def get_m3u8_playlist_path():
-
-            aimp_playlist_filename_without_extension    = os.path.splitext(aimp_playlist_filename)[0]
-            m3u8_playlist_filename                      = '{}.m3u8'.format(aimp_playlist_filename_without_extension)
+            aimp_playlist_filename_without_extension = os.path.splitext(aimp_playlist_filename)[0]
+            m3u8_playlist_filename = '{}.m3u8'.format(aimp_playlist_filename_without_extension)
 
             return os.path.join(args.output_dir, m3u8_playlist_filename)
 
         playlist_path = get_m3u8_playlist_path()
         playlist_data = '\n'.join(m3u8_playlist_lines)
-        
-        with open(playlist_path, "w", encoding = 'utf-8-sig') as m3u8file:
+
+        with open(playlist_path, "w", encoding='utf-8-sig') as m3u8file:
             m3u8file.write(playlist_data)
 
     file_path = os.path.join(aimp_playlist_directory, aimp_playlist_filename)
-            
-    with open(file_path, encoding = 'utf_16_le') as handle:
 
-        aimp_playlist_lines = handle.read().splitlines()        
+    with open(file_path, encoding='utf_16_le') as handle:
+
+        aimp_playlist_lines = handle.read().splitlines()
         m3u8_playlist_lines = get_m3u8_playlist_lines()
 
         write_m3u8_playlist()
 
+
 args = get_args()
 
-if args.input_file != None:
-        
-    dirname     = os.path.dirname(args.input_file)
-    basename    = os.path.basename(args.input_file)
-    
+if args.input_file is not None:
+
+    dirname = os.path.dirname(args.input_file)
+    basename = os.path.basename(args.input_file)
+
     convert_playlist(dirname, basename)
-    
-elif args.input_dir != None:
+
+elif args.input_dir is not None:
 
     files = os.walk(args.input_dir)
 
     for root, dirs, filenames in files:
-        
-        for filename in filenames:        
+
+        for filename in filenames:
 
             filename_extension = os.path.splitext(filename)[1]
 
