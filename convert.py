@@ -2,7 +2,7 @@ import os
 import argparse
 
 
-def get_args():
+def get_args() -> argparse.Namespace:
     args_parser = argparse.ArgumentParser()
 
     args_parser.add_argument(
@@ -101,12 +101,15 @@ args = get_args()
 
 if args.input_file is not None:
 
-    dirname = os.path.dirname(args.input_file)
+    directory_name = os.path.dirname(args.input_file)
     basename = os.path.basename(args.input_file)
 
-    convert_playlist(dirname, basename)
+    convert_playlist(directory_name, basename)
 
 elif args.input_dir is not None:
+
+    # noinspection SpellCheckingInspection
+    aimp_playlist_extension = ".aimppl4"
 
     files = os.walk(args.input_dir)
 
@@ -116,5 +119,5 @@ elif args.input_dir is not None:
 
             filename_extension = os.path.splitext(filename)[1]
 
-            if filename_extension == '.aimppl4':
+            if filename_extension == aimp_playlist_extension:
                 convert_playlist(args.input_dir, filename)
