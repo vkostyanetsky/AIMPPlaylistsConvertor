@@ -29,72 +29,76 @@ def get_args() -> argparse.Namespace:
     return args_parser.parse_args()
 
 
-def convert_playlist(aimp_playlist_directory, aimp_playlist_filename):
-    def get_m3u8_playlist_lines():
+def get_relative_audiofile_path(audiofile_path: str) -> str:
 
-        def get_relative_audiofile_path(audiofile_path):
+    paths = [audiofile_path, args.output_dir]
+    common_path = os.path.commonpath(paths)
 
-            paths = [audiofile_path, args.output_dir]
-            common_path = os.path.commonpath(paths)
+    if common_path != '':
+        result = os.path.relpath(audiofile_path, start=common_path)
+    else:
+        result = audiofile_path
 
-            if common_path != '':
-                result = os.path.relpath(audiofile_path, start=common_path)
-            else:
-                result = audiofile_path
+    return result
 
-            return result
 
-        result = ['#EXTM3U']
+def get_result_playlist_lines(source_playlist_lines: list) -> list:
 
-        is_content = False
+    result = ['#EXTM3U']
 
-        for (index, line) in enumerate(aimp_playlist_lines):
+    is_content = False
 
-            if line == '#-----CONTENT-----#':
-                is_content = True
-                continue
+    for (index, line) in enumerate(source_playlist_lines):
 
-            if not is_content:
-                continue
+        if line == '#-----CONTENT-----#':
+            is_content = True
+            continue
 
-            if line.startswith('#-----'):
-                is_content = False
-                continue
+        if not is_content:
+            continue
 
-            if line.startswith('-'):
-                continue
+        if line.startswith('#-----'):
+            is_content = False
+            continue
 
-            line_parts = line.split('|')
+        if line.startswith('-'):
+            continue
 
-            audiofile_path = get_relative_audiofile_path(line_parts[0])
+        line_parts = line.split('|')
 
-            result.append('#EXTINF:')
-            result.append(audiofile_path)
+        audiofile_path = get_relative_audiofile_path(line_parts[0])
 
-        return result
+        result.append('#EXTINF:')
+        result.append(audiofile_path)
 
-    def write_m3u8_playlist():
+    return result
 
-        def get_m3u8_playlist_path():
-            aimp_playlist_filename_without_extension = os.path.splitext(aimp_playlist_filename)[0]
-            m3u8_playlist_filename = '{}.m3u8'.format(aimp_playlist_filename_without_extension)
 
-            return os.path.join(args.output_dir, m3u8_playlist_filename)
+def write_result_playlist(source_playlist_filename: str, result_playlist_lines: list) -> None:
 
-        playlist_path = get_m3u8_playlist_path()
-        playlist_data = '\n'.join(m3u8_playlist_lines)
+    def get_result_playlist_path() -> str:
+        source_playlist_filename_without_extension = os.path.splitext(source_playlist_filename)[0]
+        result_playlist_filename = f"{source_playlist_filename_without_extension}.m3u8"
 
-        with open(playlist_path, "w", encoding='utf-8-sig') as m3u8file:
-            m3u8file.write(playlist_data)
+        return os.path.join(args.output_dir, result_playlist_filename)
 
-    file_path = os.path.join(aimp_playlist_directory, aimp_playlist_filename)
+    playlist_path = get_result_playlist_path()
+    playlist_data = '\n'.join(result_playlist_lines)
+
+    with open(playlist_path, "w", encoding="utf-8-sig") as result_file:
+        result_file.write(playlist_data)
+
+
+def convert_playlist(source_playlist_directory: str, source_playlist_filename: str) -> None:
+
+    file_path = os.path.join(source_playlist_directory, source_playlist_filename)
 
     with open(file_path, encoding='utf_16_le') as handle:
 
-        aimp_playlist_lines = handle.read().splitlines()
-        m3u8_playlist_lines = get_m3u8_playlist_lines()
+        source_playlist_lines = handle.read().splitlines()
+        result_playlist_lines = get_result_playlist_lines(source_playlist_lines)
 
-        write_m3u8_playlist()
+        write_result_playlist(source_playlist_filename, result_playlist_lines)
 
 
 args = get_args()
