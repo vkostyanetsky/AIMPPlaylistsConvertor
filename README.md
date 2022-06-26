@@ -1,6 +1,6 @@
 # AIMP Playlists Convertor
 
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 Простой скрипт, конвертирующий плейлисты [AIMP](https://www.aimp.ru/) в формат M3U8.
 
