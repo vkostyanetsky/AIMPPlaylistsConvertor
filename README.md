@@ -2,9 +2,9 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
-Простой скрипт, конвертирующий плейлисты [AIMP](https://www.aimp.ru/) в формат M3U8.
+It is a simple script, which can convert playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
 
-## Как пользоваться?
+## How to use it?
 
 Можно указать либо путь к конкретному файлу aimppl4 в параметре `file`, либо путь к директории с файлами aimppl4 в параметре `directory`. Обратите внимание, что в последнем случае вложенные директории не сканируются.
 
