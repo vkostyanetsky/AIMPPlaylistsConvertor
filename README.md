@@ -2,7 +2,7 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
-It is a simple script, which can convert playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
+It is a simple script converts playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
 
 ## How to use it?
 
