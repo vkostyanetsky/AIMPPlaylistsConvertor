@@ -76,7 +76,7 @@ def write_result_playlist(
     source_playlist_filename: str, result_playlist_lines: list
 ) -> None:
 
-    playlist_path = get_result_playlist_path()
+    playlist_path = get_result_playlist_path(source_playlist_filename)
     playlist_data = "\n".join(result_playlist_lines)
 
     with open(playlist_path, "w", encoding="utf-8-sig") as result_file:
