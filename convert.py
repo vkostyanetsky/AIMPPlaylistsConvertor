@@ -3,6 +3,7 @@ import os
 
 
 def get_args() -> argparse.Namespace:
+
     args_parser = argparse.ArgumentParser()
 
     args_parser.add_argument(
@@ -21,6 +22,7 @@ def get_args() -> argparse.Namespace:
 
 
 def get_relative_audiofile_path(audiofile_path: str) -> str:
+
     paths = [audiofile_path, args.output_dir]
     common_path = os.path.commonpath(paths)
 
@@ -33,6 +35,7 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
 
 
 def get_result_playlist_lines(source_playlist_lines: list) -> list:
+
     result = ["#EXTM3U"]
 
     is_content = False
@@ -64,6 +67,7 @@ def get_result_playlist_lines(source_playlist_lines: list) -> list:
 
 
 def get_result_playlist_path(source_playlist_filename) -> str:
+
     source_playlist_filename_without_extension = os.path.splitext(
         source_playlist_filename
     )[0]
