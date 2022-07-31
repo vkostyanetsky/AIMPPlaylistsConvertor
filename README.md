@@ -1,6 +1,6 @@
 # AIMP Playlists Convertor
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![flake8](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 It is a simple script converts playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
 
