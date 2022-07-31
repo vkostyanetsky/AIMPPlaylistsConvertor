@@ -1,10 +1,10 @@
-# AIMP Playlists Convertor
+# 🎵 🎶 🎼 AIMP Playlists Convertor
 
 [![flake8](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 It is a simple script converts playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
 
-## How to use it?
+## 😎 How to use it?
 
 You can specify the path to a specific aimppl4 file in the `input-file` parameter, or the path to the directory with the aimppl4 files in the `input-dir` parameter. Note that nested directories will not be scanned.
 
