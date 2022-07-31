@@ -18,6 +18,6 @@ python convert.py --input-dir C:\Users\Username\AppData\Roaming\AIMP\PLS --outpu
 
 Please note that:
 
-1. The names of the resulting files will match the original ones (except for the extension which changes to m3u8).
+1. The names of the resulting files will match the original ones (except for the extension, which changes to m3u8).
 2. Metadata (track title, artist, duration, etc.) are not converted. Their exact conversion is impossible, while their absence is usually not a problem for players (they simply read the metadata themselves).
 3. If the path to the track can be made relative to the directory with the result of the conversion, it will be made relative. For example, if the conversion goes to `D:\Music`, and the audio files are in `D:\Music\Collection`, then the script will make the paths to them relative: not `D:\Music\Collection\Track.mp3`, but `Collection\Track.mp3` and so on further.
