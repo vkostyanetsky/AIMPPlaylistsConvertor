@@ -1,4 +1,4 @@
-# 🎼 🎶 🎵 AIMP Playlists Convertor
+# 🎶 🎙️ 🔊 AIMP Playlists Convertor
 
 [![flake8](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
