@@ -1,8 +1,8 @@
-# 🎵 🎶 🎼 AIMP Playlists Convertor
+# 🎼 🎶 🎵 AIMP Playlists Convertor
 
 [![flake8](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/flake8.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
-It is a simple script converts playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
+This script converts playlists of [AIMP](https://www.aimp.ru/) to the M3U8 format.
 
 ## 😎 How to use it?
 
@@ -12,7 +12,7 @@ In the `output-dir` parameter, specify the path to the directory where you want 
 
 Example:
 
-```
+```commandline
 python convert.py --input-dir C:\Users\Username\AppData\Roaming\AIMP\PLS --output-dir D:\Music
 ```
 
