@@ -6,18 +6,18 @@ It is a simple script converts playlists of [AIMP](https://www.aimp.ru/) to the 
 
 ## How to use it?
 
-Можно указать либо путь к конкретному файлу aimppl4 в параметре `file`, либо путь к директории с файлами aimppl4 в параметре `directory`. Обратите внимание, что в последнем случае вложенные директории не сканируются.
+You can specify the path to a specific aimppl4 file in the `input-file` parameter, or the path to the directory with the aimppl4 files in the `input-dir` parameter. Note that nested directories will not be scanned.
 
-В параметре `output` укажите путь к директории, куда нужно записать результат конвертации. 
+In the `output-dir` parameter, specify the path to the directory where you want to see the result of the conversion. 
 
-Пример:
+Example:
 
 ```
-python convert.py --directory C:\Users\Username\AppData\Roaming\AIMP\PLS --output D:\Music
+python convert.py --input-dir C:\Users\Username\AppData\Roaming\AIMP\PLS --output-dir D:\Music
 ```
 
-Обратите внимание, что:
+Please note that:
 
-1. Имена итоговых файлов будут соответствовать исходным (за исключением расширения — оно меняется на m3u8).
-2. Метаданные (название трека, исполнитель, продолжительность и так далее) не конвертируются. Их точная конвертация невозможна, в то время как их отсутствие для плееров обычно не проблема. Так что я решил просто сделать скрипт предсказуемым.
-3. Если путь к треку можно сделать относительным по отношению к директории с результатом конвертации, он будет сделан относительным. Например, если конвертация идёт в D:\Music, а аудиофайлы лежат в D:\Music\Collection, то пути к ним скрипт сделает относительными: не D:\Music\Collection\Track.mp3, а Collection\Track.mp3 и так далее.
+1. The names of the resulting files will match the original ones (except for the extension which changes to m3u8).
+2. Metadata (track title, artist, duration, etc.) are not converted. Their exact conversion is impossible, while their absence is usually not a problem for players (they simply read the metadata themselves).
+3. If the path to the track can be made relative to the directory with the result of the conversion, it will be made relative. For example, if the conversion goes to `D:\Music`, and the audio files are in `D:\Music\Collection`, then the script will make the paths to them relative: not `D:\Music\Collection\Track.mp3`, but `Collection\Track.mp3` and so on further.
