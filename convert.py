@@ -1,8 +1,13 @@
+"""Convert AIMP playlists to the universal M3U format."""
+
 import argparse
 import os
 
 
 def get_args() -> argparse.Namespace:
+    """
+    Defines and parses the script's arguments.
+    """
 
     args_parser = argparse.ArgumentParser()
 
@@ -40,7 +45,7 @@ def get_result_playlist_lines(source_playlist_lines: list) -> list:
 
     is_content = False
 
-    for (index, line) in enumerate(source_playlist_lines):
+    for (_, line) in enumerate(source_playlist_lines):
 
         if line == "#-----CONTENT-----#":
             is_content = True
@@ -112,9 +117,6 @@ if args.input_file is not None:
 
 elif args.input_dir is not None:
 
-    # noinspection SpellCheckingInspection
-    aimp_playlist_extension = ".aimppl4"
-
     files = os.walk(args.input_dir)
 
     for root, dirs, filenames in files:
@@ -123,5 +125,5 @@ elif args.input_dir is not None:
 
             filename_extension = os.path.splitext(filename)[1]
 
-            if filename_extension == aimp_playlist_extension:
+            if filename_extension == ".aimppl4":
                 convert_playlist(args.input_dir, filename)
