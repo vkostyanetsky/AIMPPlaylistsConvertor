@@ -32,6 +32,8 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
     are stored in the same folder.
     """
 
+    ab = "ddd"
+
     paths = [audiofile_path, args.output_dir]
     common_path = os.path.commonpath(paths)
 
