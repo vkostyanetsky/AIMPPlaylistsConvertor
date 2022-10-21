@@ -1,4 +1,4 @@
-"""Convert AIMP playlists to the universal M3U8 format."""
+"""Converts AIMP playlists to the universal M3U8 format."""
 
 import argparse
 import os
