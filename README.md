@@ -2,11 +2,11 @@
 
 [![pylint](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
-This script converts playlists of AIMP to the M3U8 format.
+This script converts playlists of AIMP music player to the popular M3U8 format.
 
 ## 🤔 What is it for?
 
-I was trying to find a way to use playlists from my PC on my smartphone. The problem was that I was using [AIMP](https://www.aimp.ru/) on the PC (which can use its own playlists format only, `aimppl4`) and the [Poweramp Music Player](https://play.google.com/store/apps/details?id=com.maxmpz.audioplayer) on my smartphone (doesn't support `aimppl4`, obviously). 
+I was trying to find a way to use playlists from my PC on my smartphone. The problem was that I was using [AIMP](https://www.aimp.ru/) on the PC (which can use its own playlists format only, `aimppl4`) and the [Poweramp Music Player](https://play.google.com/store/apps/details?id=com.maxmpz.audioplayer) on my smartphone (doesn't support `aimppl4`, sadly). 
 
 As you can see, I didn't find anything convenient, so here I am :-)
 
