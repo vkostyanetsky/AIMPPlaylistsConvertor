@@ -4,7 +4,7 @@
 
 This script converts playlists of AIMP to the M3U8 format.
 
-## 🤔 Why do I need this?
+## 🤔 What is it for?
 
 I was trying to find a way to use my playlists from my PC on my smartphone. The problem was that I was using [AIMP](https://www.aimp.ru/) on my PC (which can use its specific playlists format only, `aimppl4`) and the [Poweramp Music Player](https://play.google.com/store/apps/details?id=com.maxmpz.audioplayer) on my smartphone (which has no support for AIMP playlists, obviously). 
 
