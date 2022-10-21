@@ -1,4 +1,4 @@
-"""Convert AIMP playlists to the universal M3U format."""
+"""Convert AIMP playlists to the universal M3U8 format."""
 
 import argparse
 import os
@@ -27,6 +27,10 @@ def get_args() -> argparse.Namespace:
 
 
 def get_relative_audiofile_path(audiofile_path: str) -> str:
+    """
+    Returns relative path if the playlist & an audiofile
+    are stored in the same folder.
+    """
 
     paths = [audiofile_path, args.output_dir]
     common_path = os.path.commonpath(paths)
@@ -39,13 +43,16 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
     return result
 
 
-def get_result_playlist_lines(source_playlist_lines: list) -> list:
+def get_result_playlist_lines(source_file_lines: list) -> list:
+    """
+    Makes lines of a M3U8 playlist file.
+    """
 
     result = ["#EXTM3U"]
 
     is_content = False
 
-    for (_, line) in enumerate(source_playlist_lines):
+    for (_, line) in enumerate(source_file_lines):
 
         if line == "#-----CONTENT-----#":
             is_content = True
@@ -71,39 +78,42 @@ def get_result_playlist_lines(source_playlist_lines: list) -> list:
     return result
 
 
-def get_result_playlist_path(source_playlist_filename) -> str:
+def get_result_playlist_path(source_file_name) -> str:
+    """
+    Makes a full path to a M3U8 playlist file.
+    """
 
-    source_playlist_filename_without_extension = os.path.splitext(
-        source_playlist_filename
-    )[0]
-    result_playlist_filename = f"{source_playlist_filename_without_extension}.m3u8"
+    source_file_name_without_extension = os.path.splitext(source_file_name)[0]
+    result_file_name = f"{source_file_name_without_extension}.m3u8"
 
-    return os.path.join(args.output_dir, result_playlist_filename)
+    return os.path.join(args.output_dir, result_file_name)
 
 
-def write_result_playlist(
-    source_playlist_filename: str, result_playlist_lines: list
-) -> None:
+def write_result_playlist(source_file_name: str, result_file_lines: list) -> None:
+    """
+    Writes a M3U8 playlist file.
+    """
 
-    playlist_path = get_result_playlist_path(source_playlist_filename)
-    playlist_data = "\n".join(result_playlist_lines)
+    playlist_path = get_result_playlist_path(source_file_name)
+    playlist_data = "\n".join(result_file_lines)
 
     with open(playlist_path, "w", encoding="utf-8-sig") as result_file:
         result_file.write(playlist_data)
 
 
-def convert_playlist(
-    source_playlist_directory: str, source_playlist_filename: str
-) -> None:
+def convert_playlist(source_file_directory: str, source_file_name: str) -> None:
+    """
+    Converts the specified AIMP playlist to the M3U8 format.
+    """
 
-    file_path = os.path.join(source_playlist_directory, source_playlist_filename)
+    file_path = os.path.join(source_file_directory, source_file_name)
 
     with open(file_path, encoding="utf_16_le") as handle:
 
         source_playlist_lines = handle.read().splitlines()
         result_playlist_lines = get_result_playlist_lines(source_playlist_lines)
 
-        write_result_playlist(source_playlist_filename, result_playlist_lines)
+        write_result_playlist(source_file_name, result_playlist_lines)
 
 
 args = get_args()
