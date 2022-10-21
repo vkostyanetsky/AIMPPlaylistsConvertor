@@ -43,7 +43,7 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
     return result
 
 
-def get_result_playlist_lines(source_file_lines: list) -> list:
+def get_result_playlist_lines(source_file_lines: list[str]) -> list[str]:
     """
     Makes lines of a M3U8 playlist file.
     """
@@ -78,7 +78,7 @@ def get_result_playlist_lines(source_file_lines: list) -> list:
     return result
 
 
-def get_result_playlist_path(source_file_name) -> str:
+def get_result_playlist_path(source_file_name: str) -> str:
     """
     Makes a full path to a M3U8 playlist file.
     """
@@ -89,7 +89,7 @@ def get_result_playlist_path(source_file_name) -> str:
     return os.path.join(args.output_dir, result_file_name)
 
 
-def write_result_playlist(source_file_name: str, result_file_lines: list) -> None:
+def write_result_playlist(source_file_name: str, result_file_lines: list[str]) -> None:
     """
     Writes a M3U8 playlist file.
     """
