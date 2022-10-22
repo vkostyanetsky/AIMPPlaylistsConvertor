@@ -1,6 +1,6 @@
 # 🎶 🎙️ 🔊 AIMP Playlists Convertor
 
-[![mypy](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/mypy.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/mypy.yml) [![pylint](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
+[![mypy](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/mypy.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/mypy.yml) [![pylint](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/pylint.yml) [![black](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/black.yml/badge.svg)](https://github.com/vkostyanetsky/AIMPPlaylistsConvertor/actions/workflows/black.yml) [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 
 This script converts playlists of AIMP music player to the popular M3U8 format.
 
