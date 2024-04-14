@@ -52,7 +52,7 @@ def get_result_playlist_lines(source_file_lines: list[str]) -> list[str]:
 
     is_content = False
 
-    for (_, line) in enumerate(source_file_lines):
+    for _, line in enumerate(source_file_lines):
 
         if line == "#-----CONTENT-----#":
             is_content = True
