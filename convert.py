@@ -100,6 +100,8 @@ def write_result_playlist(source_file_name: str, result_file_lines: list[str]) -
     with open(playlist_path, "w", encoding="utf-8-sig") as result_file:
         result_file.write(playlist_data)
 
+    print(f"Created file: {playlist_path}")
+
 
 def convert_playlist(source_file_directory: str, source_file_name: str) -> None:
     """
