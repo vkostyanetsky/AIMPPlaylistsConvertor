@@ -33,9 +33,9 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
     Returns relative path if the playlist & an audiofile
     are stored in the same folder.
     """
-    
+
     audio_p = Path(audiofile_path).expanduser().resolve(strict=False)
-    out_p   = Path(args.output_dir).expanduser().resolve(strict=False)
+    out_p = Path(args.output_dir).expanduser().resolve(strict=False)
 
     if audio_p.drive.lower() != out_p.drive.lower():
         return str(audio_p).replace("\\", "/")
@@ -45,7 +45,7 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
         return str(rel).replace("\\", "/")
     except ValueError:
         return str(audio_p).replace("\\", "/")
-        
+
 
 def get_result_playlist_lines(source_file_lines: list[str]) -> list[str]:
     """
