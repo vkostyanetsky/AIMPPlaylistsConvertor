@@ -3,6 +3,8 @@
 import argparse
 import os
 
+from pathlib import Path
+
 
 def get_args() -> argparse.Namespace:
     """
@@ -31,17 +33,19 @@ def get_relative_audiofile_path(audiofile_path: str) -> str:
     Returns relative path if the playlist & an audiofile
     are stored in the same folder.
     """
+    
+    audio_p = Path(audiofile_path).expanduser().resolve(strict=False)
+    out_p   = Path(args.output_dir).expanduser().resolve(strict=False)
 
-    paths = [audiofile_path, args.output_dir]
-    common_path = os.path.commonpath(paths)
+    if audio_p.drive.lower() != out_p.drive.lower():
+        return str(audio_p).replace("\\", "/")
 
-    if common_path != "":
-        result = os.path.relpath(audiofile_path, start=common_path)
-    else:
-        result = audiofile_path
-
-    return result
-
+    try:
+        rel = audio_p.relative_to(out_p)
+        return str(rel).replace("\\", "/")
+    except ValueError:
+        return str(audio_p).replace("\\", "/")
+        
 
 def get_result_playlist_lines(source_file_lines: list[str]) -> list[str]:
     """
